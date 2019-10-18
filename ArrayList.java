@@ -11,44 +11,35 @@ public class ArrayList<T> implements List<T>
 		position = -1;
 	}
 
-	public void add(T item) {
-		// if (position == size-1) {
-		// 	grow();
-		// }
-		// T[] temp = Arrays.copyOf(arr, arr.length+1);
-		// temp[0] = item;
-		// System.arraycopy(arr, 0, temp, 1, arr.length);
-		// position++;
-
-
+	public void add(T item) {		
 		add(0, item);
 	}
 
 	public void add(int pos, T item) {
-		if (position == size-1) {
+		if (position == size-1) {// if out of capacity
 			grow();
 		}
 		for (int i=position; i>=pos; i--) {
-			arr[i+1] = arr[i];
+			arr[i+1] = arr[i];// all element after pos shift to right
 		}
 		arr[pos] = item;
 		position++;
 	}
 
-	public T get(int pos) throws Exception {
+	public T get(int pos) {
 		if (size == 0) {
-			throw new Exception();
+		return null;
 		}
 		return arr[pos];
 	}
 
-	public T remove(int pos) throws Exception {
+	public T remove(int pos) {
 		if (size == 0) {
-			throw new Exception();
+			return null;
 		}
 		T temp = arr[pos];
 		for (int i=pos+1; i<position; i++) {
-			arr[i-1] = arr[i];
+			arr[i-1] = arr[i];// all element after pos shift to left
 		}
 		arr[position] = null;
 		position--;

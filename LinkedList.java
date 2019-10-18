@@ -1,7 +1,6 @@
 public class LinkedList<T> implements List<T>
 {
 	Node<T> head;
-	// Node<T> tail;
 	int size;
 
 	public class Node<T>
@@ -17,16 +16,15 @@ public class LinkedList<T> implements List<T>
 
 	public LinkedList() {
 		head = null;
-		// tail = null;
 		size = 0;
 	}
 
 	public void add(T item) {
-		if (size == 0) {
+		if (size == 0) {// if head is null
 			head  = new Node<T>(item, null, null);
 		}
 		else {
-			head.previous = new Node<T>(item, null, head);
+			head.previous = new Node<T>(item, null, head);// make item the previous one of head
 			head = head.previous;
 		}
 		size++;
@@ -34,11 +32,9 @@ public class LinkedList<T> implements List<T>
 
 	public void add(int pos, T item) {
 		size++;
-		Node temp = new Node(null,null,null);
-		temp.data = item;
-		temp.next = null;
+		Node temp = new Node(item,null,null);
 		if (head == null) {
-			if (pos == 0) {
+			if (pos == 0) {// if add at beginning
 				head = temp;
 			}
 			else {
@@ -61,34 +57,33 @@ public class LinkedList<T> implements List<T>
 		}
 		temp.next = current;
 		prev.next = temp;
-
 	}
 
-	public T get(int pos) throws Exception {
+	public T get(int pos) {
 		if (size == 0) {
-			throw new Exception();
+			return null;
 		}
 		Node current = head;
 		int position = 0;
 		while (current != null) {
-			if (position == pos) {
+			if (position == pos) {// check where pos is
 				return (T)current.data;
 			}
 			position++;
-			current = current.next;
+			current = current.next;// current to next element
 		}
 		return null;
 	}
 
-	public T remove(int pos) throws Exception {
+	public T remove(int pos) {
 		if (size == 0) {
-			throw new Exception();
+			return null;
 		}
 		Node temp = new Node(null,null,null);
 		Node current = head;
 		int position = 0;
 		while (current != null) {
-			if (position == pos) {
+			if (position == pos) {// check where pos is
 				temp = current;
 				for (int i=0; (current!=null)&&(i<pos-1); i++) {
 					current = current.next;
