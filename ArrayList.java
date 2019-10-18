@@ -11,8 +11,12 @@ public class ArrayList<T> implements List<T>
 		position = -1;
 	}
 
-	public void add(T item) {		
-		add(0, item);
+	public void add(T item) {
+		if (position == size-1) {
+			grow();
+		}
+		position++;
+		arr[position] = item;
 	}
 
 	public void add(int pos, T item) {
